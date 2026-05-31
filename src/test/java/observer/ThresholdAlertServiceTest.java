@@ -8,7 +8,7 @@ public class ThresholdAlertServiceTest {
     @Test
     public void testShouldAlertCost_belowThreshold_returnsFalse() {
         ThresholdAlertService service = new ThresholdAlertService(10, 100.0);
-        assertFalse(service.shouldAlertCost(50.0));
+        assertTrue(service.shouldAlertCost(50.0)); // TEST ROTO A PROPOSITO
     }
 
     @Test
