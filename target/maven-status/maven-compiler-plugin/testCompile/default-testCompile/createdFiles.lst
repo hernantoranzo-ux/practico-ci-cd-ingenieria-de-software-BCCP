@@ -1,0 +1,5 @@
+observer/ThresholdAlertServiceTest.class
+observer/AlertObserverFakeTest$NeverAlertService.class
+observer/AlertObserverFakeTest.class
+observer/AlertObserverFakeTest$AlwaysAlertService.class
+observer/AlertObserverMockTest.class
