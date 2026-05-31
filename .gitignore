@@ -1,0 +1,14 @@
+# Ignorar directorio de compilación de Maven
+target/
+
+# Ignorar archivos compilados de Java
+*.class
+
+# Ignorar archivos temporales y configuraciones de IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+.DS_Store
