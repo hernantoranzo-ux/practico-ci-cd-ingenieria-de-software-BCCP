@@ -9,6 +9,9 @@ on:
       # Filtro de etiqueta: debe seguir el patron de version semantica (v1.0.0, v2.3.15, etc.)
       - 'v*.*.*'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Seccion 'jobs' donde se agrupan las tareas a realizar
 jobs:
   # Definición del trabajo de publicacion de la release
