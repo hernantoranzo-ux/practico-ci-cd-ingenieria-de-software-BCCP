@@ -24,11 +24,11 @@ jobs:
     steps:
       # Descarga del codigo fuente en la etiqueta actual
       - name: Descargar codigo (Checkout)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Configuración de Java 21 y la cache de Maven en el runner
       - name: Configurar JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           # Version de Java a utilizar, debe coincidir con pom.xml (Java 21)
           java-version: '21'

@@ -20,7 +20,7 @@ jobs:
     steps:
       # Descarga el código del repositorio usando la acción oficial checkout de GitHub
       - name: Descargar codigo (Checkout)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Ejecuta la acción local personalizada de compilación que creamos en .github/actions/build
       - name: Compilar codigo fuente
@@ -38,7 +38,7 @@ jobs:
     steps:
       # Descarga el código del repositorio al runner de esta tarea
       - name: Descargar codigo (Checkout)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Ejecuta la acción local personalizada de pruebas que creamos en .github/actions/test
       - name: Ejecutar suite de pruebas
