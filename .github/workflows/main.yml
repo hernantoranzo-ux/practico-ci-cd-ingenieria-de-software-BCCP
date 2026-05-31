@@ -1,0 +1,45 @@
+# Nombre descriptivo del workflow que se visualizará en la pestaña de Actions en GitHub
+name: Integracion Continua (CI)
+
+# Seccion 'on' para configurar los eventos/triggers que inician este pipeline
+on:
+  # Definición del evento de Pull Request
+  pull_request:
+    # Filtro de ramas: el workflow solo se iniciará cuando el PR tenga como destino la rama 'main'
+    branches:
+      - main
+
+# Seccion 'jobs' donde se agrupan los distintos trabajos independientes del pipeline
+jobs:
+  # Definición del primer trabajo llamado 'build' (Compilación)
+  build:
+    # Especifica el sistema operativo y entorno de ejecución del contenedor runner de GitHub
+    runs-on: ubuntu-latest
+
+    # Pasos que el job ejecutará de manera secuencial
+    steps:
+      # Descarga el código del repositorio usando la acción oficial checkout de GitHub
+      - name: Descargar codigo (Checkout)
+        uses: actions/checkout@v3
+
+      # Ejecuta la acción local personalizada de compilación que creamos en .github/actions/build
+      - name: Compilar codigo fuente
+        uses: ./.github/actions/build
+
+  # Definición del segundo trabajo llamado 'test' (Pruebas unitarias)
+  test:
+    # Corre sobre el mismo tipo de runner para mantener consistencia de plataforma
+    runs-on: ubuntu-latest
+    
+    # Restricción de dependencia secuencial: 'test' solo se ejecuta si el job 'build' finaliza con éxito (BUILD SUCCESS)
+    needs: build
+
+    # Pasos secuenciales del job de pruebas
+    steps:
+      # Descarga el código del repositorio al runner de esta tarea
+      - name: Descargar codigo (Checkout)
+        uses: actions/checkout@v3
+
+      # Ejecuta la acción local personalizada de pruebas que creamos en .github/actions/test
+      - name: Ejecutar suite de pruebas
+        uses: ./.github/actions/test

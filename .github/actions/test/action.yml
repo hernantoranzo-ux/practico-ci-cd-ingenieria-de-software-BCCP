@@ -1,0 +1,29 @@
+# Nombre descriptivo de la acción compuesta para GitHub Actions
+name: 'Ejecutar Pruebas'
+
+# Descripción detallada de esta acción
+description: 'Configura el entorno de Java y corre toda la suite de pruebas unitarias con Maven'
+
+# Especificación del tipo de ejecución compuesta (composite)
+runs:
+  using: 'composite'
+  
+  steps:
+    # Paso 1: Configuración de JDK 21 (igual que en build para garantizar consistencia del entorno)
+    - name: 'Configurar JDK 21'
+      # Acción oficial para configurar Java
+      uses: actions/setup-java@v3
+      with:
+        # Versión 21 para coincidir con la configuración del proyecto
+        java-version: '21'
+        # Distribución estándar Temurin
+        distribution: 'temurin'
+        # Habilitación de caché de Maven para no re-descargar dependencias ya descargadas en el paso anterior
+        cache: 'maven'
+
+    # Paso 2: Ejecución de las pruebas unitarias
+    - name: 'Ejecutar Pruebas con Maven'
+      # mvn test ejecuta todas las pruebas unitarias (los fakes, mocks y pruebas de umbral) en src/test/java
+      run: mvn test
+      # En acciones compuestas es obligatorio declarar el shell a utilizar
+      shell: bash

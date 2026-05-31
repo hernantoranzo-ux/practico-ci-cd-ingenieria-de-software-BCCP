@@ -1,0 +1,29 @@
+# Nombre descriptivo de la acción compuesta para GitHub Actions
+name: 'Compilar Proyecto'
+
+# Descripción detallada del propósito y funcionamiento de esta acción
+description: 'Configura el entorno de Java y compila el código fuente usando Maven sin correr pruebas'
+
+# Especificación del tipo de ejecución, indicando que es una acción compuesta (composite)
+runs:
+  using: 'composite'
+  
+  steps:
+    # Paso 1: Configuración del entorno de Java Development Kit (JDK) versión 21
+    - name: 'Configurar JDK 21'
+      # Se utiliza la acción oficial de GitHub para configurar Java
+      uses: actions/setup-java@v3
+      with:
+        # Se define la versión 21 de Java requerida por el archivo pom.xml
+        java-version: '21'
+        # Se selecciona la distribución Temurin (Eclipse Adoptium), que es una de las más estables y comunes
+        distribution: 'temurin'
+        # Se activa el almacenamiento en caché de dependencias de Maven para acelerar ejecuciones posteriores
+        cache: 'maven'
+
+    # Paso 2: Compilación de las clases del proyecto
+    - name: 'Compilar con Maven'
+      # Se ejecuta 'mvn compile' para compilar el código de src/main/java. No corre pruebas ni genera un empaquetado (JAR)
+      run: mvn compile
+      # En acciones compuestas es obligatorio especificar el intérprete de comandos (shell)
+      shell: bash
