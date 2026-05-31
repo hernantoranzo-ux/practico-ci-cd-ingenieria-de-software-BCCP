@@ -9,6 +9,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Seccion 'jobs' donde se agrupan los distintos trabajos independientes del pipeline
 jobs:
   # Definición del primer trabajo llamado 'build' (Compilación)
