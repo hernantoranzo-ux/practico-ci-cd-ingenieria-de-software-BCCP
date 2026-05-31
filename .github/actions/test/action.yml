@@ -12,7 +12,7 @@ runs:
     # Paso 1: Configuración de JDK 21 (igual que en build para garantizar consistencia del entorno)
     - name: 'Configurar JDK 21'
       # Acción oficial para configurar Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         # Versión 21 para coincidir con la configuración del proyecto
         java-version: '21'
